@@ -1,0 +1,164 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inconsolata', cursive;
+}
+/*Header*/
+header{
+    background-image: url('../img/header.jpg');
+    background-repeat: no-repeat;
+    background-position:top;
+    background-size: cover;
+    height: 100%;
+}
+header div{
+    padding-top: 14rem;
+    padding-bottom: 15rem;
+}
+header h1{
+    font-family: 'Lobster', cursive;
+    border: 0;
+}
+header hr{
+    background-color: black;
+    height: 1px;
+    width: 24%;
+}
+
+/*navbar*/
+.logo{
+    height: 40px;
+}
+
+/*carrousel*/
+.bg-carousel{
+    background-color: #1f1f1f;
+}
+
+.carousel-img{
+    height: 270px;
+    width: 220px;
+    align-content: space-between;
+}
+
+/*bajar los indicadores del carrusel*/
+.carousel-indicators{
+  top:280px;
+}
+/*modificar la forma de los indicadores*/
+.carousel-indicators li{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.carousel hr{
+    background-color: white;
+    height: 1px;
+    width: 14%;
+}
+
+/*sobre nosotros*/
+.sobrenosotros{
+    z-index: 2;
+    position: relative;
+}
+.contenido{
+    max-width: 1000px;
+    padding-left: 120px;
+}
+
+#sobrenosotros hr{
+    background-color: black;
+    height: 1px;
+    width: 10%;
+}
+
+/*clasicos del cine*/
+#clasicos hr{
+    background-color: black;
+    height: 1px;
+    width: 10%;
+}
+
+.row{
+    font-family: 'Gayathri', sans-serif;
+}
+
+.mazos{
+    font-family: 'Gayathri', sans-serif;
+}
+.bandera{
+    height: 20px;
+    width: 25px;
+}
+
+/*parallax section*/
+.parallax{
+    min-height: 500px;
+    background: transparent;
+}
+
+/*curiosidades cine*/
+.curiosidades{
+    font-family: 'Gayathri', sans-serif;
+}
+
+#curiosidades hr{
+    background-color: black;
+    height: 1px;
+    width: 10%;
+}
+
+/*footer*/
+.footer{
+    text-align: center;
+    background-color:rgb(43, 42, 42);
+    font-family: 'Gayathri', sans-serif;
+}
+
+.iconos a{
+    text-decoration: none;
+    color: white;
+}
+
+/*mediaquery*/
+@media (max-width: 575.98px) {
+    /*tamaño h1*/
+    .display-4{
+        font-size: 45px;
+    }
+    /*parrafos sobrenosotros*/
+    .contenido{
+        padding-left: 20px;
+    }
+    /*footer*/
+    .footer{
+        font-size: 12px;
+    }
+    /*formulario*/
+    .subtitulo{
+        font-size: 16px;
+    }
+}
+
+/*modales*/
+.modales{
+    font-family: 'Gayathri', sans-serif;
+}
+
+/*formulario*/
+
+#formulario hr {
+    background-color: black;
+    height: 1px;
+    width: 10%;
+}
+
+#listado{
+    margin-bottom: 1000px;
+}

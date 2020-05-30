@@ -1,0 +1,90 @@
+{% extends 'duocmobile/main.html'%}
+
+{% block navbar%}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index'%}">Inicio</a>
+        </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Add película</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Mis películas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Recomendaciones</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block contenido %}
+<div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
+    <h2 class="pt-2 pb-4">Bienvenido/a: {{ user.username }}</h2>
+    <form>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre:</label>
+            <div class="col-sm-10">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.nombre }}</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Apellido:</label>
+            <div class="col-sm-10">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.apellido }}</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.email }}</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Telefono:</label>
+            <div class="col-sm-10">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.telefono }}</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Tipo:</label>
+            <div class="col-sm-10">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.tipo }}</label>
+            </div>
+        </div>
+        <div class="container" id="alumno-btns">
+            <a class="btn btn-success" id="asignaturas" href="{% url 'listado_asignaturas'%}">Mis asignaturas</a>
+            <a class="btn btn-primary" id="notas" href="{% url 'index'%}">Notas</a>
+        </div>
+    
+        <div class="container" id="docente-btns">
+            <a class="btn btn-success" id="cursos" href="{% url 'listado_cursos'%}">Mis Cursos</a>
+            <a class="btn btn-primary" id="alumnos-criticos" href="{% url 'alumnos_criticos'%}">Mis Alumnos Criticos</a>
+        </div>
+    </div>
+    </form>
+</div>
+<script type="text/javascript">
+    // Aqui puedo implementar y decidir que usuarios podrán ver que módulos.
+    var is_docente = '{{user.perfil.docente.is_docente}}'
+    var is_alumno = '{{user.perfil.student.is_alumno}}'
+
+    if (is_docente == 'True'){
+        document.getElementById('alumno-btns').innerHTML = ''
+    }
+    else if(is_alumno == 'True'){
+		document.getElementById('docente-btns').innerHTML = ''
+	}else{
+        document.getElementById('alumno-btns').innerHTML = ''
+		document.getElementById('docente-btns').innerHTML = ''
+    }
+</script> 
+{% endblock %}

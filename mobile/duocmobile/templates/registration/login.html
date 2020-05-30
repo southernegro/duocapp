@@ -1,0 +1,32 @@
+{% extends 'duocmobile/main.html'%}
+
+{% block navbar%}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index'%}">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Registrarse</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
+    <h2>Login</h2>
+    <form class="container py-3" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table> 
+        <div class="py-4">
+            <input class="btn btn-success" type="submit" value="Ingresar">
+        </div> 
+        
+    </form>
+
+    {{ mensaje }}
+</div>
+
+{% endblock %}

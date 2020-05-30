@@ -1,0 +1,63 @@
+{% extends 'duocmobile/main.html'%}
+
+{% load static %}
+
+{% block javascript %}
+
+    <script src="{% static 'js/confirmacion.js' %}"></script>
+
+{% endblock %}
+
+{% block navbar%}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index'%}">Inicio</a>
+        </li>
+        {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'perfil' %}">User: {{ user.username }}</a>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block contenido %}
+<div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
+    <h2 class="pt-2 pb-4">Mis Alumnos Criticos</h2>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Alumno</th>
+                <th scope="col">Asignatura</th>
+                <th scope="col">Promedio Actual</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n in alumnos %}
+            <tr>
+                <td scope="row">{{n.alumno.user.nombre}}</td>
+                <td scope="row">{{n.curso.asignatura.nombre}}</td>
+                <td scope="row">{{n.notas.prom|floatformat:1}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="container" id="docente-btns">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="document">
+            <button type="submit">Subir archivo</button>
+        </form>
+        {% if url %}
+        <p>Archivo subido: <a href="{{ url }}">{{ url }}</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
