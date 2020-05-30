@@ -1,6 +1,6 @@
 {% extends 'duocmobile/main.html'%}
 
-{% load static%}
+{% load static %}
 
 {% block navbar %}
     <ul class="navbar-nav ml-auto">
@@ -8,26 +8,17 @@
             <a class="nav-link" href="#">Inicio</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#sobrenosotros">Sobre nosotros</a>
+            <a class="nav-link" href="{% url 'perfil' %}">{{request.user.perfil.tipo}}: {{ user.perfil.nombre }}</a>
         </li>
+        {% if user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link" href="#clasicos">Clásicos</a>
+            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
         </li>
+    {% else %}
         <li class="nav-item">
-            <a class="nav-link" href="#curiosidades">Curiosidades</a>
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
         </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'perfil' %}">{{request.user.perfil.tipo}}: {{ user.perfil.nombre }}</a>
-                </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
-            </li>
-        
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-        
+    {% endif %}
     </ul>
 {% endblock %}
 
@@ -36,13 +27,13 @@
     <!--Header-->
     <header>
         <div class="container">
-            <h1 class="text-center display-4">Cinema Classic</h1>
+            <h1 class="text-center display-4">Duoc App</h1>
             <hr>
         </div>
     </header>
     <!--Carrousel-->
     <section class="carousel text-white bg-carousel d-none d-md-block">
-        <h2 class="text-center pt-3">Los clásicos nunca mueren</h2>
+        <h2 class="text-center pt-3">Accede a tus módulos</h2>
         <hr>
         <div class="py-5 container">
             <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -57,27 +48,27 @@
                     <!--primera pagina carrusel-->
                     <div class="carousel-item active">
                         <div class="row" style="align-content: space-between">
-
                             <div class="col-3">
-                                <a href="{% url 'index'%}">
-                                    <img src="{% static 'img/matrix.jpg' %}" class="d-block carousel-img" alt="matrix-cartel"></a>
+                                <a href="{% url 'perfil'%}">
+                                    <img src="{% static 'img/profile.png' %}" class="d-block carousel-img" alt="Perfil"></a>
+                                    
                             </div>
                             <div class="col-3">
                                 <a href="{% url 'index'%}">
-                                    <img src="{% static 'img/memento.jpeg' %}" class="d-block carousel-img" alt="memento-cartel"></a>
+                                    <img src="{% static 'img/timetable.png' %}" class="d-block carousel-img" alt="Horario"></a>
                             </div>
                             <div class="col-3">
-                                <a href="{% url 'index'%}"><img src="{% static 'img/pulpfiction.jpeg' %}"
-                                        class="d-block carousel-img" alt="pulpfiction-cartel"></a>
+                                <a href="{% url 'index'%}"><img src="{% static 'img/marks.png' %}"
+                                        class="d-block carousel-img" alt="Notas"></a>
                             </div>
                             <div class="col-3">
-                                    <a href="{% url 'index'%}">
-                                <img src="{% static 'img/requiem.jpg' %}" class="d-block carousel-img" alt="requiemforadream-cartel">
+                                    <a href="{% url 'listado_asignaturas'%}">
+                                <img src="{% static 'img/class.png' %}" class="d-block carousel-img" alt="Asignaturas">
                             </a>
                             </div>
                         </div>
                     </div>
-                    <!--segunda pagina carrusel-->
+                    <!--segunda pagina carrusel
                     <div class="carousel-item">
                         <div class="row">
                             <div class="col-3">
@@ -93,597 +84,14 @@
                                 <img src="{% static 'img/theshining.jpg' %}" class="d-block carousel-img" alt="shining">
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
     </section>
-
-
-    <!--sobre nosotros-->
-    <section id="sobrenosotros" class="parallax" data-parallax="scroll" data-z-index="1"
-        data-image-src="{% static 'img/fondoviejo.png' %}">
-        <div class="container text-center">
-            <div class="pt-5 pb-4">
-                <h2 class="sobrenosotros">Sobre nosotros</h2>
-                <hr class="sobrenosotros">
-            </div>
-            <div class="row text-left pb-5 contenido">
-                <div class="col-md-6">
-                    <p class="sobrenosotros">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis ante
-                        nulla. Donec in neque consectetur, ultrices justo eu, hendrerit lectus. Nullam fermentum turpis
-                        et dolor euismod consequat sed sed ante. Curabitur vel lacinia nisi. Sed mollis condimentum
-                        rhoncus. Proin sed diam eu risus auctor aliquet. Sed nisi lorem, mollis sit amet gravida in,
-                        finibus ut diam. Nunc cursus lacus ex, id interdum nibh tristique ac. Maecenas in mi blandit,
-                        euismod ipsum eu, lobortis nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                        Mauris ultricies sem eu massa pellentesque, id interdum nibh luctus. Nam ac orci id neque
-                        posuere aliquam.</p>
-                </div>
-                <div class="col-md-6">
-                    <p class="sobrenosotros">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis ante
-                        nulla. Donec in neque consectetur, ultrices justo eu, hendrerit lectus. Nullam fermentum turpis
-                        et dolor euismod consequat sed sed ante. Curabitur vel lacinia nisi. Sed mollis condimentum
-                        rhoncus. Proin sed diam eu risus auctor aliquet. Sed nisi lorem, mollis sit amet gravida in,
-                        finibus ut diam. Nunc cursus lacus ex, id interdum nibh tristique ac. Maecenas in mi blandit,
-                        euismod ipsum eu, lobortis nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                        Mauris ultricies sem eu massa pellentesque, id interdum nibh luctus. Nam ac orci id neque
-                        posuere aliquam.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--clasicos-->
-    <section id="clasicos" class="container shadow-lg p-3 mb-5 bg-white rounded">
-        <div class="container text-center pt-3">
-            <h2>Recomendaciones</h2>
-            <hr style="background-color: black;
-            height: 1px;
-            width: 10%;">
-        </div>
-
-        
-        <div class="container mazos">
-            <!--primer deck-->
-            <div class="card-deck pb-5">
-                <!--card-->
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'img/fightclub.jpeg' %}" class="card-img-top" alt="fightclub">
-                    <div class="card-body ">
-                        <h6 class="card-title">Título: Fight Club</h6>
-                        <h6 class="card-title">Año: 1999</h6>
-                        <h6 class="card-title">Duración: 139 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/usa.png' %}"
-                                alt="bandera-usa">
-                        </div>
-                        <h6 class="card-title">Dirección: David Fincher</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#fightclub">Sinopsis</a>
-                    </div>
-                </div>
-                <!--card-->
-                <div class="card mtop-5" style="width: 18rem;">
-                    <img src="{% static 'img/psycho.jpg' %}" class="card-img-top" alt="psycho">
-                    <div class="card-body">
-                        <h6 class="card-title">Título: Psycho</h6>
-                        <h6 class="card-title">Año: 1960</h6>
-                        <h6 class="card-title">Duración: 109 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/usa.png' %}"
-                                alt="bandera-usa">
-                        </div>
-                        <h6 class="card-title">Dirección: Alfred Hitchcock</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#psycho">Sinopsis</a>
-                    </div>
-                </div>
-                <!--card-->
-                <div class="card mtop-5" style="width: 18rem;">
-                    <img src="{% static 'img/sinaliento.jpg' %}" class="card-img-top" alt="sinaliento">
-                    <div class="card-body ">
-                        <h6 class="card-title">Título: À bout de souffle</h6>
-                        <h6 class="card-title">Año: 1960</h6>
-                        <h6 class="card-title">Duración: 89 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/france.png' %}"
-                                alt="bandera-france">
-                        </div>
-                        <h6 class="card-title">Dirección: Alfred Hitchcock</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#escapada">Sinopsis</a>
-                    </div>
-                </div>
-            </div>
-
-            <!--segundo deck-->
-            <div class="card-deck pb-5">
-                <!--card-->
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'img/persona.jpg' %}" class="card-img-top" alt="persona">
-                    <div class="card-body">
-                        <h6 class="card-title">Título: Persona</h6>
-                        <h6 class="card-title">Año: 1966</h6>
-                        <h6 class="card-title">Duración: 81 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/suecia.png' %}"
-                                alt="bandera-suecia">
-                        </div>
-                        <h6 class="card-title">Dirección: Ingmar Bergman</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#persona">Sinopsis</a>
-                    </div>
-                </div>
-                <!--card-->
-                <div class="card mtop-5" style="width: 18rem;">
-                    <img src="{% static 'img/inthemoodforlove.jpg' %}" class="card-img-top" alt="moodforlove">
-                    <div class="card-body">
-                        <h6 class="card-title">Título: in the Mood for Love</h6>
-                        <h6 class="card-title">Año: 2000</h6>
-                        <h6 class="card-title">Duración: 96 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/hong-kong.png' %}"
-                                alt="bandera-hong-kong">
-                        </div>
-                        <h6 class="card-title">Dirección: Wong Kar-Wai</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#moodforlove">Sinopsis</a>
-                    </div>
-                </div>
-                <!--card-->
-                <div class="card mtop-5" style="width: 18rem;">
-                    <img src="{% static 'img/hombreelefante.jpg' %}" class="card-img-top" alt="hombreelefante">
-                    <div class="card-body">
-                        <h6 class="card-title">Título: The Elephant Man</h6>
-                        <h6 class="card-title">Año: 1980</h6>
-                        <h6 class="card-title">Duración: 125 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/usa.png' %}"
-                                alt="bandera-usa">
-                        </div>
-                        <h6 class="card-title">Dirección: David Lynch</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#elephantman">Sinopsis</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--Modales Recomendaciones-->
-    <div class="modales">
-        <div class="modal fade" id="fightclub" tabindex="-1" role="dialog" aria-labelledby="fightclub"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lblfightclub">Fight Club (1999)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/fightclub.jpeg' %}" class="card-img-top" alt="fightclub">
-                        <p class="pt-4">Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un
-                            viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy
-                            particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la
-                            vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder
-                            descargar sus frustaciones y su ira, que tendrá un éxito arrollador.</p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="psycho" tabindex="-1" role="dialog" aria-labelledby="psycho" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lblpsycho">Psycho (1960)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/psycho.jpg' %}" class="card-img-top" alt="psycho">
-                        <p class="pt-4">Marion Crane, una joven secretaria, tras cometer el robo de un dinero en su
-                            empresa, huye de la ciudad y, después de conducir durante horas, decide descansar en un
-                            pequeño y apartado motel de carretera regentado por un tímido joven llamado Norman Bates,
-                            que vive en la casa de al lado con su madre.</p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="escapada" tabindex="-1" role="dialog" aria-labelledby="lblsinaliento"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lblsinaliento">À bout de souffle (1960)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/sinaliento.jpg' %}" class="card-img-top" alt="sinaliento">
-                        <p class="pt-4">Michel Poiccard (Jean-Paul Belmondo) es un ex-figurante de cine admirador de
-                            Bogart. Tras robar un coche en Marsella para ir a París, mata fortuitamente a un motorista
-                            de la policía. Sin remordimiento alguno por lo que acaba de hacer, prosigue el viaje. En
-                            París, tras robar dinero a una amiga, busca a Patricia (Jean Seberg), una joven burguesa
-                            americana, que aspira a ser escritora y vende el New York Herald Tribune por los Campos
-                            Elíseos; sueña también con matricularse en la Sorbona y escribir algún día en ese periódico.
-                            En Europa cree haber hallado la libertad que no conoció en América. Lo que Michel ignora es
-                            que la policía lo está buscando por la muerte del motorista. </p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="persona" tabindex="-1" role="dialog" aria-labelledby="lblpersona"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lblpersona">Persona (1966)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/persona.jpg' %}" class="card-img-top" alt="persona">
-                        <p class="pt-4">Elisabeth (Liv Ullmann), una célebre actriz de teatro, es hospitalizada tras
-                            perder la voz durante una representación de "Electra". Después de ser sometida a una serie
-                            de pruebas, el diagnóstico es bueno. Sin embargo, como sigue sin hablar, debe permanecer en
-                            la clínica. Alma (Bibi Andersson), la enfermera encargada de cuidarla, intenta romper su
-                            mutismo hablándole sin parar. </p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="moodforlove" tabindex="-1" role="dialog" aria-labelledby="lblmood"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lblmood">In the Mood for Love (2000)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/inthemoodforlove.jpg' %}" class="card-img-top" alt="moodforlove">
-                        <p class="pt-4">Hong Kong, 1962. Chow, redactor jefe de un diario local, se muda con su mujer a
-                            un edificio habitado principalmente por residentes de Shanghai. Allí conoce a Li-zhen, una
-                            joven que acaba de instalarse en el mismo edificio con su esposo. Ella es secretaria de una
-                            empresa de exportación y su marido está continuamente de viaje de negocios. Como la mujer de
-                            Chow también está casi siempre fuera de casa, Li-zhen y Chow pasan cada vez más tiempo
-                            juntos y se hacen muy amigos. Un día, ambos descubrirán algo inesperado sobre sus
-                            respectivos cónyuges. </p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="elephantman" tabindex="-1" role="dialog" aria-labelledby="lblelephant"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lblelephant">The Elephant Man (1980)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/hombreelefante.jpg' %}" class="card-img-top" alt="hombreelefante">
-                        <p class="pt-4">A finales del siglo XIX, el doctor Frederick Treves descubre en un circo a un
-                            hombre llamado John Merrick. Se trata de un ciudadano británico con la cabeza
-                            monstruosamente deformada, que vive en una situación de constante humillación y sufrimiento
-                            al ser exhibido diariamente como una atracción de feria. </p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!--Seccion parallax-->
-    <div class="parallax" data-parallax="scroll" data-z-index="1" data-image-src="{% static 'img/parallax/universo.jpg' %}"></div>
+    <div class="parallax" data-parallax="scroll" data-z-index="1" data-image-src="{% static 'img/parallax-back.jpeg' %}"></div>
 
-
-    <!--Curiosidades de cine-->
-    <section class="container mt-4 shadow-lg p-3 mb-5 bg-white rounded" id="curiosidades">
-        <div class="text-center py-4">
-            <h2>Curiosidades</h2>
-            <hr>
-            <h4 class="curiosidades">Tómate un descanso, acompáñanos y entérate de las curiosidades de los clásicos del
-                ayer y hoy.</h4>
-        </div>
-
-        <div class="container mazos">
-            <!--primer deck-->
-            <div class="card-deck pb-5">
-                <!--card-->
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'img/clockwork-orange.jpg' %}" class="card-img-top" alt="clockworkorange">
-                    <div class="card-body ">
-                        <h6 class="card-title">Título: A Clockwork Orange</h6>
-                        <h6 class="card-title">Año: 1971</h6>
-                        <h6 class="card-title">Duración: 137 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/uk.png' %}"
-                                alt="bandera-uk">
-                        </div>
-                        <h6 class="card-title">Dirección: Stanley Kubrick</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal"
-                            data-target="#clockworkorange">Curiosidades</a>
-                    </div>
-                </div>
-                <!--card-->
-                <div class="card mtop-5" style="width: 18rem;">
-                    <img src="{% static 'img/donnie.jpg' %}" class="card-img-top" alt="donniedarko">
-                    <div class="card-body">
-                        <h6 class="card-title">Título: Donnie Darko</h6>
-                        <h6 class="card-title">Año: 2001</h6>
-                        <h6 class="card-title">Duración: 113 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/usa.png' %}"
-                                alt="bandera-usa">
-                        </div>
-                        <h6 class="card-title">Dirección: Richard Kelly</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal"
-                            data-target="#donniedarko">Curiosidades</a>
-                    </div>
-                </div>
-                <!--card-->
-                <div class="card mtop-5" style="width: 18rem;">
-                    <img src="{% static 'img/thegodfather.jpeg' %}" class="card-img-top" alt="godfather">
-                    <div class="card-body ">
-                        <h6 class="card-title">Título: The Godfather</h6>
-                        <h6 class="card-title">Año: 1972</h6>
-                        <h6 class="card-title">Duración: 175 min.</h6>
-                        <div class="row container">
-                            <h6 class="card-title">País: </h6><img class="bandera ml-2" src="{% static 'img/banderas/usa.png' %}"
-                                alt="bandera-usa">
-                        </div>
-                        <h6 class="card-title">Dirección: Francis Ford Coppola</h6>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#padrino">Curiosidades</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--Modales curiosidades-->
-    <section class="modales">
-        <div class="modal fade" id="clockworkorange" tabindex="-1" role="dialog" aria-labelledby="lblorange"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lblorange">A Clockwork Orange (1971)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/clockwork-orange.jpg' %}" class="card-img-top" alt="clockworkorange">
-                        <h3 class="pt-4">01. ¿Persona o naranja?</h3>
-                        <p>El título orginal, A clockwork orange, se menciona dos veces en la novela, pero ninguna
-                            durante la película. El autor del libro, Anthony Burgess, confesó que se derivaba de una
-                            antigua expresión cockney (el argot del sur de Londres), «as queer as a clockwork orange»,
-                            que significa «tan raro como una naranja mecánica». También hay quien lo interpreta como El
-                            hombre mecánico porque se cree que orange (traducida aquí como naranja) en realidad viene
-                            del término ourang, un vocablo de Malasia, donde Burgess vivió varios años, que significa
-                            persona.</p>
-                        <h3>02. Inspirada en la vida real</h3>
-                        <p>En 1944, y tras volver a Londres después de su estancia en Malasia, la mujer de Burgess, que
-                            estaba embarazada, fue violada por cuatro soldados americanos durante un apagón. Debido a la
-                            paliza, perdió al bebé y ese terrible suceso inspiró al autor para su novela.</p>
-                        <h3>03. Naranja millonaria</h3>
-                        <p>El filme costó dos millones de dólares y recaudó más de 40. De estos beneficios, el 40 por
-                            ciento fueron para Kubrick y se aseguró el control total sobre sus películas gracias a un
-                            acuerdo con Warner.</p>
-                        <h3>04. Calificada X</h3>
-                        <p>En EE.UU. se estrenó en 1971 y fue calificada como película X. Posteriormente, Kubrick cortó
-                            30 segundos y se reestrenó en 1973, con calificación R. Es una de las dos únicas películas
-                            calificadas como X en su estreno original nominada al Oscar a mejor película. La otra fue
-                            Cowboy de medianoche. A Inglaterra llegó en 1972 con una polémica sin precedentes por su
-                            contenido, demasiado violento, y su repercusión en los espectadores. Algunos delincuentes
-                            cometieron delitos, incluso algún asesinato, recreando escenas, cantando Singing in the rain
-                            y vistiendo indumentaria parecida a la de los protagonistas. Kubrick presionó a Warner Bros
-                            para que, un año después, cancelara su exhibición en todo el Reino Unido. Según su viuda,
-                            Christine, lo hizo, entre otras cosas, por miedo, ya que recibieron varias amenazas de
-                            muerte. Kubrick había dicho que sólo se reestrenaría tras su fallecimiento (en 1999), y así
-                            fue. En Inglaterra se volvió a ver en el año 2000. La película fue lanzada en vídeo y DVD
-                            por primera vez ese mismo año.
-                        </p>
-                        <h3>05. Sin derecho a reinserción</h3>
-                        <p>La novela de Burgess fue editada en EE.UU. sin el último capítulo, en el que Alex, reformado,
-                            se lamenta de su vida anterior. Kubrick adaptó el guión directamente de esa edición y sólo
-                            después supo que existía un final diferente, pero jamás consideró incluirlo.</p>
-                        <h3>06. Improvisando bajo la lluvia</h3>
-                        <p>El tema Singing in the rain, que Alex canta y baila durante la paliza al escritor y la
-                            violación a su mujer, no estaba en el guión. Kubrick le pidió a McDowell que improvisara y
-                            el actor cantó esta canción porque era la única que se sabía. Al director le gustó tanto que
-                            compró los derechos por 10.000 dólares.</p>
-                        <h3>07. Yogur-plus</h3>
-                        <p>La leche que bebían Los Drugos (la pandilla de Alex) en el Korova Milkbar tenía que cambiarse
-                            cada hora porque se cuajaba debido al calor de los focos.</p>
-                        <h3>08. Música para la enajenación</h3>
-                        <p>Firmada por Walter Carlos (conocida ahora como Wendy Carlos, tras su cambio de sexo), es una
-                            magistral mezcla de piezas originales de música clásica y el sintetizador moog, que se
-                            adapta como un guante a las imágenes. Entre las melodías destacan la Marcha fúnebre de Henry
-                            Purcell en la primera escena; la obertura de Guillermo Tell de Rossini, acelerada
-                            electrónicamente en la escena de la orgía de Alex con dos chicas (imágenes igualmente
-                            aceleradas y que, en su montaje normal, duraban 28 minutos); o la Novena sinfonía (scherzo)
-                            de Ludwig van Beethoven en la danza de las estatuillas abrazadas de Jesucristo.</p>
-                        <h3>09. Sin el sello atómico</h3>
-                        <p>Se dice que Kubrick pidió a Pink Floyd utilizar la música del disco Atom heart mother suite
-                            pero, como el director quería un permiso ilimitado del tema, no llegaron a un acuerdo.</p>
-                        <h3>10. Beethoven, directo al top 1</h3>
-                        <p>La Novena sinfonía de Ludwig van Beethoven suena en varias escenas. La escuchamos cuando Alex
-                            ve la película de Hitler, cuando el escritor intenta hacer que se suicide escuchando la
-                            canción a todo volumen o cuando fantasea con una escena sexual en la nieve. No es extraño
-                            que la película revitalizara las ventas de la sinfonía coral.</p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="donniedarko" tabindex="-1" role="dialog" aria-labelledby="lbldonniedarko"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lbldonniedarko">Donnie Darko (2001)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/donnie.jpg' %}" class="card-img-top" alt="donniedarko">
-                        <h3 class="pt-4">01. Obsesión con los números</h3>
-                        <p>Donnie Darko tiene un alto nivel de obsesión con los números. Frank le dice a Donnie que el
-                            mundo se terminará en 28 días, 6 horas, 42 minutos y 12 segundos:</p>
-                        <ul>
-                            <li>- La sumatoria de todos esos números da 88. La historia transcurre en 1988.</li>
-                            <li>- El número del vuelo que la mamá y la hermana de Donnie van a tomar es 2806, que se
-                                aborda en la compuerta 48 y que sale a la medianoche (12.00 hs.).</li>
-                            <li>- Desde que Donnie recibe esta directiva de Frank la película tiene lugar a lo largo de
-                                28 días. En el Director's Cut hay exactamente 28 escenas.</li>
-                            <li>- La película se rodó en 28 días.</li>
-                        </ul>
-                        <h3>02. Mal momento para estrenarse</h3>
-                        <p>El haberse estrenado luego del 9/11 no favoreció a la película, ya que la audiencia
-                            norteamericana no estaba de humor para historias apocalípticas que incluyeran justamente
-                            aviones. Recaudó solo $515.000 de un presupuesto de $4.5 millones.
-                            Pero su fama de culto comenzó cuando en un cine de New York la proyectaron por la medianoche
-                            durante 28 meses. Luego de eso y el boca en boca, explotó en DVD donde su tirada inicial
-                            recaudó $10 millones, y unos cuantos más en el 2004 con el Director´s Cut.</p>
-                        <h3>03. ¿Porqué Frank, el conejo gigante, es el guía espectral de Donnie?</h3>
-                        <p>El director explicó que es una referencia a Harvey, la comedia de 1950 en la cual Jimmy
-                            Stewart conversa con un conejo enorme y todo el mundo cree que está loco. Sin embargo, Kelly
-                            no vio Harvey hasta después de haber rodado su opera prima.</p>
-                        <h3>04. Letras arábicas</h3>
-                        <p>El póster original tenía letras arábigas como las que Donnie descubre en su brazo. Pero luego
-                            del 9/11 fue cambiada por la menos polémica fuente Trajan, una muy habitual en los afiches
-                            de películas.</p>
-                        <h3>05. Derechos de autor</h3>
-                        <p>Muchas de las canciones pensadas originalmente tuvieron que ser sustituidas por problemas de
-                            derechos. La escena del baile fue grabada con West End Girls de Pet Shop Boys, pero en la
-                            post producción se tuvo que agregar Notorious. Y la exitosa Mad World de Gary Jules fue un
-                            reemplazo de MLK de U2. </p>
-                        <h3>06. Hombre orquesta</h3>
-                        <p>El compositor Michael Andrews toca todos los instrumentos de la banda sonora porque el
-                            presupuesto no le permitía contratar más personas. Pero sí logró convencer a su amigo Gary
-                            Jules para que cante la versión de Mad World de Tears for Fears en el clímax del film. Y fue
-                            un gran negocio para Jules porque la canción fue el hit No. 1 durante la navidad del 2003 en
-                            Inglaterra</p>
-                        <h3>07. Permiso a Peyo</h3>
-                        <p>El director consiguió el permiso oficial de Peyo, el creador de los Pitufos, para realizar la
-                            escena donde discuten sobre la sexualidad de los pitufos y pitufina, porque pese a ser
-                            gráfica era acorde a la mitología de los personajes.</p>
-                        <h3>08. Gracias Marihuana</h3>
-                        <p>Kelly tuvo la idea de aplicar esos extraños efectos que salen de los pechos de los personajes
-                            y que predicen sus movimientos futuros cuando veía bajo efectos de la marihuana un programa
-                            sobre football donde el conductor congelaba la imagen de los jugadores para analizar la
-                            jugada.</p>
-                        <h3>09. Semillero</h3>
-                        <p>Donnie Darko no solo fue el trampolín de Gyllenhaal sino que también debutaron en la pantalla
-                            grande Seth Rogen como el amigo del villano, y Ashley Tisdale como Kim, una tímida
-                            estudiante de la escuela en esta breve escena.</p>
-                        <h3>10. Donnie el pecador</h3>
-                        <p>A lo largo de la película Donnie (Jake Gyllenhaal) sucumbe a las tres tentaciones que
-                            menciona Jim Cunningham (Patrick Swayze): el alcohol, las drogas y el sexo pre matrimonial.
-                            Una de las películas que dan en el cine es, significativamente, La última tentación de
-                            Cristo.</p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="padrino" tabindex="-1" role="dialog" aria-labelledby="lblgodfather"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lblgodfather">The Godfather (1972)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{% static 'img/thegodfather.jpeg' %}" class="card-img-top" alt="godfather">
-                        <h3 class="pt-4">01. ¿Cuál fue la primera escena que se rodó?</h3>
-                        <p>Michael y Kay saliendo con regalos navideños de los almacenes Best & Co.</p>
-                        <h3>02. ¿Cuáles eran las tres reglas básicas de Coppola como realizador?</h3>
-                        <ul>
-                            <li>1ª. Empezar con el guión acabado.</li>
-                            <li>2ª. Trabajar sólo con gente de total confianza.</li>
-                            <li>3ª. Rodar de manera que la productora no pueda cambiarle nada. Coppola reconoció al
-                                final que no pudo cumplir ninguna de la tres.</li>
-                        </ul>
-                        <h3>03. ¿Cuántas veces estuvo a punto de ser despedido Francis Ford Coppola?</h3>
-                        <p>Cinco. Cuando defendió a Brando para el papel de Corleone. Cuando a la Paramount le entró el
-                            pánico por el retraso del rodaje. Cuando insistió en rodar una parte en Sicilia. Cuando se
-                            pasó del presupuesto. Cuando dijo que quería una película de más de tres horas de duración.
-                        </p>
-                        <h3>04. ¿Qué actores compitieron con Marlon Brando por el papel de Don Vito?</h3>
-                        <p>Ernest Borgnine, Richard Conte, Anthony Quinn y Raf Vallone estuvieron en la línea de salida.
-                            También Carlo Ponti, marido de Sofia Loren y productor cinematográfico. Los finalistas
-                            fueron Brando, Laurence Olivier, la lucha fue entre ellos, y George C. Scott, como tercero
-                            en discordia.</p>
-                        <h3>05. ¿Optó Robert de Niro a algún papel en 'El Padrino'?</h3>
-                        <p>Sí. Optó a varios y estuvo a punto de hacerse con uno de ellos (el de Paulie Gatto), aunque
-                            afortunadamente para él lo rechazó al ofrecerle el papel protagonista en otra película. Si
-                            lo hubiera aceptado, jamás hubiera podido hacer 'El Padrino II', encarnando al joven Vito
-                            Corleone.</p>
-                        <h3>06. ¿En qué escenas de la película salen los padres de Coppola?</h3>
-                        <p>Podemos ver a Carmine e Italia Coppola cenando en el restaurante donde Michael Corleone acaba
-                            con la vida de Sollozo y el capitán McClusky. Italia también sale como telefonista en la
-                            oficina de Genco. Carmine toca el piano en la escena donde los hombres de Corleone se
-                            preparan para la guerra con otra familias.</p>
-                        <h3>07. ¿Estaba previsto en el guión el papel del gato que acaricia Corleone en la primera
-                            escena de la película?</h3>
-                        <p>No. Fue una improvisación de Brando. Se lo encontró por el plató y pensó que podría quedar
-                            creíble. El gato se lo pasó tan bien que sus ronroneos hicieron que no se oyera
-                            correctamente a los protagonistas, provocando que hubiera que doblar, posteriormente, la
-                            escena.</p>
-                        <h3>08. ¿Cuánto le costó a la Paramount cada día de producción?</h3>
-                        <p>40.000 dólares. 4.000 dólares a la hora.</p>
-                        <h3>09. ¿Que le regaló la Paramount a Coppola por haber hecho el filme más exitoso de todos los
-                            tiempos hasta entonces?</h3>
-                        <p>Un Mercedes Benz 600 valorado en 45.000 dólares. Pero Coppola lo dejó aparcado en su garaje y
-                            siguió utilizando su pequeño Honda.</p>
-                        <h3>10. ¿Cómo se llama el último hombre que besa la mano de Michael Corleone en la última escena
-                            de la película?</h3>
-                        <p>Rocco Lampone.</p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 {% endblock %}

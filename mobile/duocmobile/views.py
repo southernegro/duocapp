@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
+from .forms import CreateUserForm
 
 
 # Create your views here.
@@ -40,9 +41,10 @@ def listado_cursos(request):
 @login_required
 def alumnos_criticos(request):
     docente = request.user.perfil.docente
+    cursos = Curso.objects.filter(docente = docente.id)
     alumnos = AlumnosCriticos.objects.filter(docente = docente.id)
     data={
-        'alumnos': alumnos
+        'alumnos': alumnos, 'cursos':cursos
     }
     if request.method == 'POST':
         uploaded_file = request.FILES['document']
@@ -52,4 +54,35 @@ def alumnos_criticos(request):
         data['url'] = fs.url(name)
     return render(request, 'duocmobile/alumnos_criticos.html', data)
 
+def registerPage(request):
+	form = CreateUserForm()
 
+	if request.method == 'POST':
+		form = CreateUserForm(request.POST)
+		if form.is_valid():
+			form.save()
+			user = form.cleaned_data.get('username')
+			messages.success(request, 'Cuenta creada con éxito para ' + user)
+			return redirect('login')
+
+	context = {'form':form}
+	return render(request, 'duocmobile/index.html', context)
+
+def loginPage(request):
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+
+		user = authenticate(request, username=username, password=password)
+
+		if user is not None:
+			login(request, user)
+			return redirect('')
+		else:
+			messages.info('Usuario o Contraseña incorrectos')
+	context= {}
+	return render(request, 'registration/login.html', context)
+
+def logoutUser(request):
+	logout(request)
+	return redirect('login')

@@ -7,15 +7,6 @@
         </li>
         {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Add película</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Mis películas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Recomendaciones</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
             </li>
         {% else %}

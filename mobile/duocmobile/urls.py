@@ -13,6 +13,9 @@ from . import views
 urlpatterns = [
 	#Leave as empty string for base url
 	path('', views.index, name="index"),
+	path('login/', views.loginPage, name="login"),
+	path('register/', views.registerPage, name="register"),
+	path('accounts/logout/', views.logoutUser, name="logout"),
 	path('accounts/profile/', views.perfil, name="perfil"),
 	path('listadoasignaturas/', views.listado_asignaturas, name="listado_asignaturas"),
 	path('listadocursos/', views.listado_cursos, name="listado_cursos"),
