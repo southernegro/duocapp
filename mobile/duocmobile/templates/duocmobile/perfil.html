@@ -1,68 +1,34 @@
 {% extends 'duocmobile/main.html'%}
 
-{% block navbar%}
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'index'%}">Inicio</a>
-        </li>
-        {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-        {% endif %}
-    </ul>
-{% endblock %}
 
 {% block contenido %}
-<div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
-    <h2 class="pt-2 pb-4">Bienvenido/a: {{ user.username }}</h2>
-    <form>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre:</label>
-            <div class="col-sm-10">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.nombre }}</label>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Apellido:</label>
-            <div class="col-sm-10">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.apellido }}</label>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-10">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.email }}</label>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Telefono:</label>
-            <div class="col-sm-10">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.telefono }}</label>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Tipo:</label>
-            <div class="col-sm-10">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">{{ user.perfil.tipo }}</label>
-            </div>
-        </div>
-        <div class="container" id="alumno-btns">
-            <a class="btn btn-success" id="asignaturas" href="{% url 'listado_asignaturas'%}">Mis asignaturas</a>
-            <a class="btn btn-primary" id="notas" href="{% url 'index'%}">Notas</a>
-        </div>
-    
-        <div class="container" id="docente-btns">
-            <a class="btn btn-success" id="cursos" href="{% url 'listado_cursos'%}">Mis Cursos</a>
-            <a class="btn btn-primary" id="alumnos-criticos" href="{% url 'alumnos_criticos'%}">Mis Alumnos Criticos</a>
-        </div>
+
+<div class="row" style="width:800px; margin:0 auto;">
+    <div class="col-6">
+        <h2 class="pt-2 pb-4">Bienvenido/a: {{ user.username }}</h2>
+        <!-- Datos de Perfil -->
+        <h2><i class="fas fa-user"></i> Mi Cuenta</h2>
+        <h4>Nombre</h4>
+        <p>{{ user.perfil.nombre }} {{user.perfil.apellido}}</p>
+        <h4>Correo</h4>
+        <p>{{ user.perfil.email}}</p>
+        <h4>Tipo de usuario</h4>
+        <p>{{ user.perfil.tipo}}</p>
+        <!-- Datos de usuario -->
+        <h4>Usuario</h4>
+        <p>{{ user.username }}</p>
     </div>
-    </form>
+    <div class="container" id="alumno-btns">
+        <a class="btn btn-success" id="asignaturas" href="{% url 'listado_asignaturas'%}">Mis asignaturas</a>
+        <a class="btn btn-primary" id="notas" href="{% url 'index'%}">Notas</a>
+    </div>
+
+    <div class="container" id="docente-btns">
+        <a class="btn btn-success" id="cursos" href="{% url 'listado_cursos'%}">Mis Cursos</a>
+        <a class="btn btn-primary" id="alumnos-criticos" href="{% url 'alumnos_criticos'%}">Mis Alumnos Criticos</a>
+    </div>
 </div>
+
 <script type="text/javascript">
     // Aqui puedo implementar y decidir que usuarios podrán ver que módulos.
     var is_docente = '{{user.perfil.docente.is_docente}}'

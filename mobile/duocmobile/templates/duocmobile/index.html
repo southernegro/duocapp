@@ -1,94 +1,47 @@
 {% extends 'duocmobile/main.html'%}
-
 {% load static %}
-
-{% block navbar %}
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'perfil' %}">{{request.user.perfil.tipo}}: {{ user.perfil.nombre }}</a>
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
-        </li>
-    {% else %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-        </li>
-    {% endif %}
-    </ul>
-{% endblock %}
-
 {% block contenido %}
-
-    <!--Header-->
-    <header>
-        <div class="container">
-            <h1 class="text-center display-4">Duoc App</h1>
-            <hr>
-        </div>
-    </header>
-    <!--Carrousel-->
-    <section class="carousel text-white bg-carousel d-none d-md-block">
         <h2 class="text-center pt-3">Accede a tus módulos</h2>
-        <hr>
-        <div class="py-5 container">
-            <div id="carousel" class="carousel slide" data-ride="carousel">
-                <div class="controles">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel" data-slide-to="1"></li>
-                    </ol>
-                </div>
-
-                <div class="carousel-inner">
-                    <!--primera pagina carrusel-->
-                    <div class="carousel-item active">
-                        <div class="row" style="align-content: space-between">
-                            <div class="col-3">
-                                <a href="{% url 'perfil'%}">
-                                    <img src="{% static 'img/profile.png' %}" class="d-block carousel-img" alt="Perfil"></a>
-                                    
-                            </div>
-                            <div class="col-3">
-                                <a href="{% url 'index'%}">
-                                    <img src="{% static 'img/timetable.png' %}" class="d-block carousel-img" alt="Horario"></a>
-                            </div>
-                            <div class="col-3">
-                                <a href="{% url 'index'%}"><img src="{% static 'img/marks.png' %}"
-                                        class="d-block carousel-img" alt="Notas"></a>
-                            </div>
-                            <div class="col-3">
-                                    <a href="{% url 'listado_asignaturas'%}">
-                                <img src="{% static 'img/class.png' %}" class="d-block carousel-img" alt="Asignaturas">
-                            </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--segunda pagina carrusel
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-3">
-                                <img src="{% static 'img/taxidriver.jpg' %}" class="d-block carousel-img" alt="taxidriver-cartel">
-                            </div>
-                            <div class="col-3">
-                                <img src="{% static 'img/thegodfather.jpeg' %}" class="d-block carousel-img" alt="thegodfather-cartel">
-                            </div>
-                            <div class="col-3">
-                                <img src="{% static 'img/themachinist.jpeg' %}" class="d-block carousel-img" alt="machinist-cartel">
-                            </div>
-                            <div class="col-3">
-                                <img src="{% static 'img/theshining.jpg' %}" class="d-block carousel-img" alt="shining">
-                            </div>
-                        </div>
-                    </div>-->
-                </div>
+        <div class="row" style="width:800px; margin:0 auto;">
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'img/profile.png' %}">
+            <div class="box-element product">
+                <h6><strong>Mi Perfil</strong></h6>
+                <hr>
+                <a class="btn btn-outline-success" href="{% url 'perfil' %}">Ir a Mi Perfil</a>
             </div>
         </div>
-    </section>
+            <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'img/class.png' %}">
+            <div class="box-element product">
+                <h6><strong>Mis Asignaturas</strong></h6>
+                <hr>
+                <a class="btn btn-outline-success" href="{% url 'listado_asignaturas' %}">Ir a Mis Asignaturas</a>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'img/timetable.png' %}">
+            <div class="box-element product">
+                <h6><strong>Mi Horario</strong></h6>
+                <hr>
+                <a class="btn btn-outline-success" href="#">Ir a Mi Horario</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'img/marks.png' %}">
+            <div class="box-element product">
+                <h6><strong>Mis Notas</strong></h6>
+                <hr>
+                <a class="btn btn-outline-success" href="#">Ir a Mis Notas</a>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
 
 
     <!--Seccion parallax-->

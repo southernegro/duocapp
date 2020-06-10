@@ -3,7 +3,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
-from .forms import CreateUserForm
+from .forms import CreateUserForm, materialApoyoForm
 
 
 # Create your views here.
@@ -23,9 +23,11 @@ def perfil(request):
 def listado_asignaturas(request):
     student = request.user.perfil.student
     cursos = Curso.objects.filter(student = student.id)
+    for i in cursos:
+        material = materialApoyo.objects.filter(curso=i)
     criticos = AlumnosCriticos.objects.filter(alumno = student.id)
     data={
-        'cursos': cursos, 'criticos':criticos
+        'cursos': cursos, 'criticos':criticos, 'material':material
         }
     return render(request, 'duocmobile/listado_asignaturas.html', data)
 
@@ -38,21 +40,41 @@ def listado_cursos(request):
     }
     return render(request, 'duocmobile/listado_cursos.html', data)
 
+#@login_required
+#def alumnos_criticos(request):
+#    docente = request.user.perfil.docente
+#    cursos = Curso.objects.filter(docente = docente.id)
+#    alumnos = AlumnosCriticos.objects.filter(docente = docente.id)
+#    data={
+#        'alumnos': alumnos, 'cursos':cursos
+#    }
+#    if request.method == 'POST':
+#        uploaded_file = request.FILES['document']
+#        fs = FileSystemStorage()
+#        name = fs.save(uploaded_file.name, uploaded_file)
+#        url = fs.url(name)
+#        data['url'] = fs.url(name)
+#    return render(request, 'duocmobile/alumnos_criticos.html', data)
+
 @login_required
 def alumnos_criticos(request):
     docente = request.user.perfil.docente
     cursos = Curso.objects.filter(docente = docente.id)
     alumnos = AlumnosCriticos.objects.filter(docente = docente.id)
     data={
-        'alumnos': alumnos, 'cursos':cursos
+        'alumnos': alumnos, 'cursos':cursos, 'form': materialApoyoForm()
     }
-    if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_file.name, uploaded_file)
-        url = fs.url(name)
-        data['url'] = fs.url(name)
+    if request.method=='POST':
+        formulario = materialApoyoForm(request.POST, files=request.FILES)
+        
+        if formulario.is_valid():
+            formulario = formulario.save(commit=False)
+            formulario.docente = docente
+            formulario.save()
+            data['mensaje']='Producto agregado con éxito'
+        data['form'] = formulario
     return render(request, 'duocmobile/alumnos_criticos.html', data)
+
 
 def registerPage(request):
 	form = CreateUserForm()

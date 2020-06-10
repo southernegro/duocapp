@@ -11,6 +11,7 @@ admin.site.register(Curso)
 admin.site.register(Student)
 admin.site.register(Notas)
 admin.site.register(AlumnosCriticos)
+admin.site.register(materialApoyo)
 
 class CursosAlumno(admin.ModelAdmin):
     fields = ['cursos', 'student']

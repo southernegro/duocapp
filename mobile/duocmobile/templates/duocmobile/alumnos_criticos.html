@@ -8,25 +8,6 @@
 
 {% endblock %}
 
-{% block navbar%}
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'index'%}">Inicio</a>
-        </li>
-        {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'perfil' %}">User: {{ user.username }}</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-        {% endif %}
-    </ul>
-{% endblock %}
 
 {% block contenido %}
 <div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
@@ -49,31 +30,41 @@
             {% endfor %}
         </tbody>
     </table>
-    <div class="container" id="docente-btns">
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">Asignatura</th>
-                    <th scope="col">Archivo</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for n in cursos %}
-                <tr>
-                    <td scope="row">{{n.asignatura.codigo}} {{n.seccion}}</td>
-                    <td scope="row"><form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="file" name="document" style="color: aliceblue;">
-                        <button type="submit">Subir archivo</button>
-                        
-                    </form></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% if url %}
-        <p>Archivo subido: <a href="{{ url }}">{{ url }}</a></p>
-        {% endif %}
-    </div>
+<div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
+    <h2>Subir Material</h2>
+    <form class="container py-3" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.titulo}}
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.docente}}
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.archivo}}
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.curso}}
+        </div>
+        <div class="py-4">
+            <input class="btn btn-success" type="submit" value="Agregar">
+        </div> 
+        
+    </form>
+
+    {{ mensaje }}
 </div>
+
 {% endblock %}
