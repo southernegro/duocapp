@@ -11,14 +11,29 @@
                 <a class="btn btn-outline-success" href="{% url 'perfil' %}">Ir a Mi Perfil</a>
             </div>
         </div>
+      
+            {% if request.user.perfil.student%}
             <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'img/class.png' %}">
-            <div class="box-element product">
-                <h6><strong>Mis Asignaturas</strong></h6>
-                <hr>
-                <a class="btn btn-outline-success" href="{% url 'listado_asignaturas' %}">Ir a Mis Asignaturas</a>
-            </div>
-        </div>
+                <img class="thumbnail" src="{% static 'img/class.png' %}">
+                <div class="box-element product">
+                    <h6><strong>Mis Asignaturas</strong></h6>
+                    <hr>
+                    <a class="btn btn-outline-success" href="{% url 'listado_asignaturas' %}">Ir a Mis Asignaturas</a>
+                </div>
+                </div>
+            {% endif %}
+
+            {% if request.user.perfil.docente%}
+            <div class="col-lg-4">
+                <img class="thumbnail" src="{% static 'img/class.png' %}">
+                <div class="box-element product">
+                    <h6><strong>Mis Cursos</strong></h6>
+                    <hr>
+                    <a class="btn btn-outline-success" href="{% url 'listado_cursos' %}">Ir a Mis Cursos</a>
+                </div>
+                </div>
+            {% endif %}
+ 
 
         <div class="col-lg-4">
             <img class="thumbnail" src="{% static 'img/timetable.png' %}">
