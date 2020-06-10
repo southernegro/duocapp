@@ -101,3 +101,9 @@ class AlumnosCriticos(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.SET_NULL, null=True, blank=True, related_name='alumno_curso')
     notas = models.ForeignKey(Notas, on_delete=models.SET_NULL, null=True, blank=True, related_name='notas_alumno')
     docente =models.ForeignKey(Docente, on_delete=models.SET_NULL, null=True, blank=True, related_name='docente_alumno_critico')
+
+class materialApoyo(models.Model):
+    titulo = models.CharField(max_length=50, null=True)
+    archivo = models.FileField(upload_to ='media/') 
+    curso = models.ForeignKey(Curso, on_delete=models.SET_NULL, null=True, blank=True, related_name='material_curso')
+    docente =models.ForeignKey(Docente, on_delete=models.SET_NULL, null=True, blank=True, related_name='docente_material')
