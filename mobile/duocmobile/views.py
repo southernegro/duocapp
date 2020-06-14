@@ -33,8 +33,8 @@ def listado_asignaturas(request):
 
 @login_required
 def listado_cursos(request):
-    asignatura = request.user.perfil.docente
-    cursos = Curso.objects.filter(asignatura = asignatura.id)
+    docente = request.user.perfil.docente
+    cursos = Curso.objects.filter(docente = docente.id)
     data={
         'cursos': cursos
     }
