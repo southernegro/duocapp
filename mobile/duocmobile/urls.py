@@ -20,6 +20,7 @@ urlpatterns = [
 	path('listadoasignaturas/', views.listado_asignaturas, name="listado_asignaturas"),
 	path('listadocursos/', views.listado_cursos, name="listado_cursos"),
 	path('alumnoscriticos/', views.alumnos_criticos, name="alumnos_criticos"),
+	path('listanonotas/', views.misNotas, name="listado_notas"),
 
 ]
 

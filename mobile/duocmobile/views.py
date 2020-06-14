@@ -108,3 +108,11 @@ def loginPage(request):
 def logoutUser(request):
 	logout(request)
 	return redirect('login')
+
+def misNotas(request):
+    alumno = request.user.perfil
+    notas = Notas.objects.filter(alumno = alumno.id)
+    data={
+        'notas':notas
+    }
+    return render(request, 'duocmobile/listado-notas.html', data)
