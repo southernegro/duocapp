@@ -1,0 +1,44 @@
+{% extends 'duocmobile/main.html'%}
+
+{% load static %}
+
+{% block javascript %}
+
+    <script src="{% static 'js/confirmacion.js' %}"></script>
+
+{% endblock %}
+
+
+{% block contenido %}
+<div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
+    <h2 class="pt-2 pb-4">Mis Notas</h2>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Curso</th>
+                <th scope="col">Nota 1</th>
+                <th scope="col">Nota 2</th>
+                <th scope="col">Nota 3</th>
+                <th scope="col">Nota Presentación</th>
+                <th scope="col">Nota ET</th>
+                <th scope="col">Nota Final</th>
+                <th scope="col">Promedio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n in notas %}
+            <tr>
+                <td scope="row">{{n.curso.asignatura.nombre}} - {{n.curso.seccion}}</td>
+                <td scope="row">{{n.nota1}}</td>
+                <td scope="row">{{n.nota2}}</td>
+                <td scope="row">{{n.nota3}}</td>
+                <td scope="row">{{n.notaP}}</td>
+                <td scope="row">{{n.notaET}}</td>
+                <td scope="row">{{n.notaFinal}}</td>
+                <td scope="row">{{n.prom|floatformat:1}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
