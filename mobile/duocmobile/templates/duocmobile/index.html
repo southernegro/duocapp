@@ -1,6 +1,7 @@
 {% extends 'duocmobile/main.html'%}
 {% load static %}
 {% block contenido %}
+        {% if request.user.is_authenticated %}
         <h2 class="text-center pt-3">Accede a tus módulos</h2>
         <div class="row" style="width:800px; margin:0 auto;">
         <div class="col-lg-4">
@@ -23,7 +24,7 @@
                 </div>
             {% endif %}
 
-            {% if request.user.perfil.docente%}
+            {% if request.user.perfil.docente %}
             <div class="col-lg-4">
                 <img class="thumbnail" src="{% static 'img/class.png' %}">
                 <div class="box-element product">
@@ -43,13 +44,37 @@
                 <a class="btn btn-outline-success" href="#">Ir a Mi Horario</a>
             </div>
         </div>
+        {% if request.user.perfil.alumno %}
         <div class="col-lg-4">
             <img class="thumbnail" src="{% static 'img/marks.png' %}">
             <div class="box-element product">
                 <h6><strong>Mis Notas</strong></h6>
                 <hr>
-                <a class="btn btn-outline-success" href="#">Ir a Mis Notas</a>
+                <a class="btn btn-outline-success" href="{% url 'listado_notas' %}">Ir a Mis Notas</a>
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'img/gmail.png' %}">
+            <div class="box-element product">
+                <h6><strong>Correo Duoc</strong></h6>
+                <hr>
+                <a class="btn btn-outline-success" href="http://www.duoc.cl/simplesaml1/module.php/core/loginuserpass.php?AuthState=_e268140b48e3e921bebffde73d495e8272d4132f83%3Ahttp%3A%2F%2Fwww.duoc.cl%2Fsimplesaml1%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%26cookieTime%3D1592179407%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Falumnos.duoc.cl%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fmail%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1%2526osid%253D1">Ir a Correo Duoc</a>
+            </div>
+        </div>
+ 
+        </div>
+        {% else %}
+        <h2 class="text-center pt-3">Debes Iniciar Sesión para acceder al sistema Duoc</h2>
+        <div class="row" style="width:800px; margin:0 auto; margin-left: 40%; margin-bottom: 80px;">
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'img/login.png' %}">
+            <div class="box-element product">
+                <h6><strong>Ir a Login</strong></h6>
+                <hr>
+                <a class="btn btn-outline-success" href="{% url 'login' %}">Ir a Iniciar Sesión</a>
             </div>
         </div>
         </div>
+        {% endif %}
 {% endblock %}
