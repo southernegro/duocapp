@@ -3,7 +3,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
-from .forms import CreateUserForm, materialApoyoForm
+from .forms import CustomUserForm, materialApoyoForm, ProfileForm, DocenteForm, StudentForm
 
 
 # Create your views here.
@@ -76,38 +76,80 @@ def alumnos_criticos(request):
     return render(request, 'duocmobile/alumnos_criticos.html', data)
 
 
-def registerPage(request):
-	form = CreateUserForm()
+def registerStudent(request):
+    data = {
+        'form': CustomUserForm(),
+        'profile': ProfileForm(),
+        'student': StudentForm()
+    }
+    if request.method == 'POST':
+        form = CustomUserForm(request.POST)
+        profile = ProfileForm(request.POST)
+        student = StudentForm(request.POST)
+        if form.is_valid() and profile.is_valid() and student.is_valid():
+            new_user = form.save()
+            profile = profile.save(commit=False)
+            profile.user = new_user
+            profile.save()
+            student = student.save()
+            student.user = profile
+            student.save()
+            username=form.cleaned_data['username']
+            password=form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            return redirect(to='index')
+        data['form']=form
+        data['profile']=profile
+        data['student']=student
+    return render(request, 'registration/register_student.html', data)
 
-	if request.method == 'POST':
-		form = CreateUserForm(request.POST)
-		if form.is_valid():
-			form.save()
-			user = form.cleaned_data.get('username')
-			messages.success(request, 'Cuenta creada con éxito para ' + user)
-			return redirect('login')
-
-	context = {'form':form}
-	return render(request, 'duocmobile/index.html', context)
+def registerDocente(request):
+    data = {
+       'form': CustomUserForm(),
+        'profile': ProfileForm(),
+        'docente': DocenteForm()
+    }
+    if request.method=='POST':
+        form = CustomUserForm(request.POST)
+        profile = ProfileForm(request.POST)
+        docente = DocenteForm(request.POST)
+        if form.is_valid() and profile.is_valid() and docente.is_valid():
+            new_user = form.save()
+            profile = profile.save(commit=False)
+            profile.user = new_user
+            profile.save()
+            docente = docente.save(commit=False)
+            docente.profile = profile
+            docente.save()
+            #autenticar el usuario y redirigirlo
+            username=form.cleaned_data['username']
+            password=form.cleaned_data['password1']
+            #autentificamos credenciales del usuario
+            user = authenticate(username=username, password=password)
+            return redirect(to='listado_usuarios')
+        data['form']=form
+        data['profile']=profile
+        data['docente']=docente
+    return render(request, 'registration/register_docente.html', data)
 
 def loginPage(request):
-	if request.method == 'POST':
-		username = request.POST.get('username')
-		password = request.POST.get('password')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-		user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
-		if user is not None:
-			login(request, user)
-			return redirect('')
-		else:
-			messages.info('Usuario o Contraseña incorrectos')
-	context= {}
-	return render(request, 'registration/login.html', context)
+        if user is not None:
+            login(request, user)
+            return redirect('')
+        else:
+            messages.info('Usuario o Contraseña incorrectos')
+    context= {}
+    return render(request, 'registration/login.html', context)
 
 def logoutUser(request):
-	logout(request)
-	return redirect('login')
+    logout(request)
+    return redirect('login')
 
 def misNotas(request):
     alumno = request.user.perfil
@@ -116,3 +158,17 @@ def misNotas(request):
         'notas':notas
     }
     return render(request, 'duocmobile/listado-notas.html', data)
+
+def listUser(request):
+    users = Perfil.objects.all()
+    data={
+        'users': users
+    }
+    return render(request, 'duocmobile/listado_usuarios.html', data)
+
+def deleteUser(request, pk):
+    user = User.objects.get(pk=pk)
+    perfil = Perfil.objects.get(user_id=pk)
+    user.delete()
+    perfil.delete()
+    return redirect(to='listado_usuarios')

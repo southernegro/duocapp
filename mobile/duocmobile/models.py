@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 TIPO_USUARIO = (
 ('Alumno', 'Alumno'),
 ('Docente', 'Docente'),
+('Admin', 'Admin'),
 )
 
 class Perfil(models.Model):
@@ -107,3 +108,17 @@ class materialApoyo(models.Model):
     archivo = models.FileField(upload_to ='media/') 
     curso = models.ForeignKey(Curso, on_delete=models.SET_NULL, null=True, blank=True, related_name='material_curso')
     docente =models.ForeignKey(Docente, on_delete=models.SET_NULL, null=True, blank=True, related_name='docente_material')
+
+class Admin(models.Model):
+    user = models.OneToOneField(Perfil, on_delete=models.CASCADE, null=True, blank=True)
+    def __str__(self):
+        return self.user.__str__()
+    @property
+    def is_admin(self):
+        admin = False
+        tipo = self.user.tipo
+        if (tipo == 'Admin'):
+            admin = True
+        else:
+            admin = False
+        return admin

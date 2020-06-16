@@ -30,7 +30,7 @@
 
 <body>
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark  sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/duoc.png' %}" alt="CinemaLogo" id="logo" class="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -90,6 +90,15 @@
     <script src='{% static "js/parallax.min.js" %}'></script>
     {% block javascript %}
     {% endblock %}
+    <script type="text/javascript" src="{% static 'js/bootstrap-confirmation.js' %}"></script>
+
+    <script type="text/javascript">
+
+        $('[data-toggle=confirmation]').confirmation({
+          rootSelector: '[data-toggle=confirmation]',
+          // other options
+        });
+    </script>
 </body>
 
 </html>
