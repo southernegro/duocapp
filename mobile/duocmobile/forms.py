@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from django import forms
 from .models import *
 
-class CreateUserForm(UserCreationForm):
+class CustomUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
@@ -14,3 +14,19 @@ class materialApoyoForm(ModelForm):
 		model = materialApoyo
 		fields = ['titulo', 'archivo', 'curso', 'docente']
 		exclude = ('docente',)
+
+class ProfileForm(ModelForm):
+	class Meta:
+		model = Perfil
+		fields = ['nombre', 'apellido', 'telefono', 'email']
+		exclude = ('email',)
+
+class DocenteForm(ModelForm):
+    class Meta:
+        model = Docente
+        fields = []
+
+class StudentForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ['cursos']
