@@ -2,34 +2,8 @@
 
 {% load static %}
 
-{% block javascript %}
-
-    <script src="{% static 'js/confirmacion.js' %}"></script>
-
-{% endblock %}
-
-{% block navbar%}
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'index'%}">Inicio</a>
-        </li>
-        {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'perfil' %}">User: {{ user.username }}</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-        {% endif %}
-    </ul>
-{% endblock %}
-
 {% block contenido %}
-<div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
+<div class="pb-5 pt-3 container shadow-lg">
     <h2 class="pt-2 pb-4">Mis Cursos</h2>
     <table class="table table-dark">
         <thead>
@@ -54,4 +28,5 @@
         </tbody>
     </table>
 </div>
+
 {% endblock %}

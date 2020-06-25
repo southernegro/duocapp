@@ -1,13 +1,9 @@
 {% extends 'duocmobile/main.html'%}
 
 {% load static %}
-{% block javascript %}
 
-    <script src="{% static 'js/confirmacion.js' %}"></script>
-
-{% endblock %}
 {% block contenido %}
-<div class="pb-5 pt-3 container shadow-lg" style="margin-bottom: 100vh;">
+<div class="pb-5 pt-3 container shadow-lg">
     <h2 class="pt-2 pb-4">Listado Usuarios</h2>
     <table class="table ">
         <thead>
@@ -42,9 +38,11 @@
         </tbody>
     </table>
     <a class="btn btn-outline-primary" href="{% url 'register_student'%}">
-        <i class="fa fa-user-plus"></i>Registrar Nuevo Alumno</a>
+        <i class="fa fa-user-plus"></i>
+    Registrar Nuevo Alumno</a>
     <a class="btn btn-outline-primary" href="{% url 'register_docente'%}">
-        <i class="fa fa-user-plus"></i>Registrar Nuevo Docente</a>
+        <i class="fa fa-user-plus"></i>
+    Registrar Nuevo Docente</a>
 
 </div>
-{% endblock %}
+        {% endblock %}

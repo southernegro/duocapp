@@ -1,101 +1,235 @@
 {% extends 'duocmobile/main.html'%}
 {% load static %}
+
 {% block contenido %}
-        {% if request.user.is_authenticated %}
-        <h2 class="text-center pt-3">Accede a tus módulos</h2>
-        <div class="row" >
-        <div class="col-lg-4">
-            
-            <div class="box-element product">
-                <h6><strong>Mi Perfil</strong></h6>
-                <a  href="{% url 'perfil' %}"><img class="thumbnail" src="{% static 'img/profile.png' %}"></a>
-            </div>
+{% if request.user.is_authenticated %}
+<h2 class="text-center pt-3">Accede a tus módulos</h2>
+<div class="row" >
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Mi Perfil</strong>
+            </h6>
+            <a href="{% url 'perfil' %}">
+                <img class="thumbnail" src="{% static 'img/profile.svg' %}">
+            </a>
         </div>
+    </div>
 
-            {% if request.user.perfil.admin %}
-            <div class="col-lg-4">
-                
-                <div class="box-element product">
-                    <h6><strong>Registro Alumnos</strong></h6>
-                    
-                    <a  href="{% url 'register_student' %}"><img class="thumbnail" src="{% static 'img/student.png' %}"></a>
-                </div>
-                </div>
-            <div class="col-lg-4">
-                
-                <div class="box-element product">
-                    <h6><strong>Registro Docentes</strong></h6>
-                    <a  href="{% url 'register_docente' %}"><img class="thumbnail" src="{% static 'img/teachers.png' %}"></a>
-                </div>
-                </div>
-                <div class="col-lg-4">
-                
-                <div class="box-element product">
-                    <h6><strong>Administración de Usuarios</strong></h6>
-                    <a  href="{% url 'listado_usuarios' %}"><img class="thumbnail" src="{% static 'img/administracion.png' %}"></a>
-                </div>
-                </div>
-            {% endif %}
+    {% if request.user.perfil.admin %}
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Registro Alumnos</strong>
+            </h6>
+            <a href="{% url 'register_student' %}">
+                <img class="thumbnail" src="{% static 'img/student.png' %}">
+            </a>
+        </div>
+    </div>
 
-      
-            {% if request.user.perfil.student%}
-            <div class="col-lg-4">
-                
-                <div class="box-element product">
-                    <h6><strong>Mis Asignaturas</strong></h6>
-                    <a  href="{% url 'listado_asignaturas' %}"><img class="thumbnail" src="{% static 'img/asignaturas.png' %}"></a>
-                </div>
-                </div>
-            {% endif %}
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Registro Docentes</strong>
+            </h6>
+            <a href="{% url 'register_docente' %}">
+                <img class="thumbnail" src="{% static 'img/teachers.png' %}">
+            </a>
+        </div>
+    </div>
 
-            {% if request.user.perfil.docente %}
-            <div class="col-lg-4">
-                
-                <div class="box-element product">
-                    <h6><strong>Mis Cursos</strong></h6>
-                    <a  href="{% url 'listado_cursos' %}"><img class="thumbnail" src="{% static 'img/asignaturas.png' %}"></a>
-                </div>
-                </div>
-            {% endif %}
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Administración de Usuarios</strong>
+            </h6>
+            <a href="{% url 'listado_usuarios' %}">
+                <img class="thumbnail" src="{% static 'img/administracion.png' %}">
+            </a>
+        </div>
+    </div>
+    {% endif %}
 
-        {% if request.user.perfil.docente and request.user.perfil.student %}
-        <div class="col-lg-4">
-            
-            <div class="box-element product">
-                <h6><strong>Mi Horario</strong></h6>
-                <a  href="#"><img class="thumbnail" src="{% static 'img/timetable.png' %}"></a>
-            </div>
-        </div>
-        {% endif %}
 
-        {% if request.user.perfil.student %}
-        <div class="col-lg-4">
-            
-            <div class="box-element product">
-                <h6><strong>Mis Notas</strong></h6>
-                <a  href="{% url 'listado_notas' %}"><img class="thumbnail" src="{% static 'img/notas.png' %}"></a>
-            </div>
+    {% if request.user.perfil.student%}
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Mis Asignaturas</strong>
+            </h6>
+            <a href="{% url 'listado_asignaturas' %}">
+                <img class="thumbnail" src="{% static 'img/asignaturas.png' %}">
+            </a>
         </div>
-        {% endif %}
-        <div class="col-lg-4">
-            
-            <div class="box-element product">
-                <h6><strong>Correo Duoc</strong></h6>
-                <a  href="http://www.duoc.cl/simplesaml1/module.php/core/loginuserpass.php?AuthState=_e268140b48e3e921bebffde73d495e8272d4132f83%3Ahttp%3A%2F%2Fwww.duoc.cl%2Fsimplesaml1%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%26cookieTime%3D1592179407%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Falumnos.duoc.cl%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fmail%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1%2526osid%253D1"><img class="thumbnail" src="{% static 'img/gmail.png' %}"></a>
-            </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Mis Notas</strong>
+            </h6>
+            <a href="{% url 'listado_notas' %}">
+                <img class="thumbnail" src="{% static 'img/notas.png' %}">
+            </a>
         </div>
- 
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Mi Asistencia</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/asistencia.png' %}">
+            </a>
         </div>
-        {% else %}
-        <h2 class="text-center pt-3">Debes Iniciar Sesión para acceder al sistema Duoc</h2>
-        <div class="row" style="width:800px; margin:0 auto; margin-left: 40%; margin-bottom: 80px;">
-        <div class="col-lg-4">
-            
-            <div class="box-element product">
-                <h6><strong>Ir a Login</strong></h6>
-                <a  href="{% url 'login' %}"><img class="thumbnail" src="{% static 'img/login.png' %}"></a>
-            </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>TNE</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/tnecard.png' %}">
+            </a>
         </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+        <h6 style="text-align: center;">
+            <strong>Solicitudes en Línea</strong>
+        </h6>
+        <a href="#">
+            <img class="thumbnail" src="{% static 'img/solicitudenlinea.png' %}">
+        </a>
         </div>
-        {% endif %}
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Certificados</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/certificados.png' %}">
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if request.user.perfil.docente %}
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Mis Cursos</strong>
+            </h6>
+            <a  href="{% url 'listado_cursos' %}">
+                <img class="thumbnail" src="{% static 'img/asignaturas.png' %}">
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Asistencia Alumnos</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/asistencia.png' %}">
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if request.user.perfil.docente or request.user.perfil.student %}
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Campus Virtual AVA</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/campus.png' %}">
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Foros</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/foro.png' %}">
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Mi Horario</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/horario.png' %}">
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Biblioteca</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/biblioteca.png' %}">
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Calendario</strong>
+            </h6>
+            <a href="#">
+                <img class="thumbnail" src="{% static 'img/calendar.svg' %}">
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Correo Duoc</strong>
+            </h6>
+            <a href="http://www.duoc.cl/simplesaml1/module.php/core/loginuserpass.php?AuthState=_e268140b48e3e921bebffde73d495e8272d4132f83%3Ahttp%3A%2F%2Fwww.duoc.cl%2Fsimplesaml1%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%26cookieTime%3D1592179407%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Falumnos.duoc.cl%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fmail%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1%2526osid%253D1">
+                <img class="thumbnail" src="{% static 'img/gmail.png' %}">
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+{% else %}
+
+<h2 class="text-center pt-3">Debes Iniciar Sesión para acceder al sistema Duoc</h2>
+<div class="row" style="width:800px; margin:0 auto; margin-left: 40%; margin-bottom: 80px;">
+    <div class="col-lg-4">
+        <div class="box-element product">
+            <h6 style="text-align: center;">
+                <strong>Ir a Login</strong>
+            </h6>
+            <a href="{% url 'login' %}">
+                <img class="thumbnail" src="{% static 'img/login.png' %}">
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}

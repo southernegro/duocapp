@@ -18,6 +18,7 @@
         <h4>Usuario</h4>
         <p>{{ user.username }}</p>
     </div>
+
     <div class="container" id="alumno-btns">
         <a class="btn btn-success" id="asignaturas" href="{% url 'listado_asignaturas'%}">Mis asignaturas</a>
         <a class="btn btn-primary" id="notas" href="{% url 'listado_notas'%}">Notas</a>
@@ -25,7 +26,7 @@
 
     <div class="container" id="docente-btns">
         <a class="btn btn-success" id="cursos" href="{% url 'listado_cursos'%}">Mis Cursos</a>
-        <a class="btn btn-primary" id="alumnos-criticos" href="{% url 'alumnos_criticos'%}">Mis Alumnos Criticos</a>
+        <a class="btn btn-primary" id="alumnos-criticos" href="{% url 'alumnos_criticos'%}">Mis Alumnos Críticos</a>
     </div>
 </div>
 

@@ -25,7 +25,7 @@ SECRET_KEY = '2!3d&ogmn@i=n($8pew8k7&1*2fe)7r^@b7$t@+)!oh7m1&(^$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['southernegro.pythonanywhere.com']
+ALLOWED_HOSTS = ['southernegro.pythonanywhere.com', 'localhost',]
 
 
 # Application definition

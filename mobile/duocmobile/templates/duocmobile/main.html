@@ -20,9 +20,6 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--CSS JQuery UI-->        
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    {% block css %}
-    
-    {% endblock %}
     <!--CSS propio-->
     <link rel="stylesheet" href='{% static "css/style.css" %}'>
     <title>{{request.user.perfil.tipo}} DuocUC</title>
@@ -39,13 +36,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'index' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'perfil' %}">{{request.user.perfil.tipo}}: {{ user.perfil.nombre }}</a>
                     </li>
-                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
                     </li>
@@ -63,7 +60,7 @@
 
     {% endblock %}
 
-    <footer class="footer py-4 text-white container-fluid">
+    <footer class="footer py-4 text-white container-fluid" style="margin-top: 20px;">
         <span>Copyright Website 2020 | Privacy Policy | Site Map | </span>
         <span>GAY0101 – Gestión Ágil de Proyectos - Duoc UC</span>
         <div class="iconos">
@@ -73,7 +70,6 @@
                     class="fab fa-instagram fa-2x pl-2"></i></a>
         </div>
     </footer>
-
     <!--JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--JQuery UI-->
@@ -88,9 +84,9 @@
         crossorigin="anonymous"></script>
     <!--JS Parallax-->
     <script src='{% static "js/parallax.min.js" %}'></script>
-    {% block javascript %}
-    {% endblock %}
+
     <script type="text/javascript" src="{% static 'js/bootstrap-confirmation.js' %}"></script>
+    <script src="{% static 'js/confirmacion.js' %}"></script>
 
     <script type="text/javascript">
 
@@ -100,5 +96,4 @@
         });
     </script>
 </body>
-
 </html>

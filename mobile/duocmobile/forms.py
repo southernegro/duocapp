@@ -8,6 +8,7 @@ class CustomUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+        exclude = ('email',)
 
 class materialApoyoForm(ModelForm):
 	class Meta:
@@ -19,7 +20,6 @@ class ProfileForm(ModelForm):
 	class Meta:
 		model = Perfil
 		fields = ['nombre', 'apellido', 'telefono', 'email']
-		exclude = ('email',)
 
 class DocenteForm(ModelForm):
     class Meta:
