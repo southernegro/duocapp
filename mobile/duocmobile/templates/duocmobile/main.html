@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!--CSS propio-->
     <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    <link rel="stylesheet" href='{% static "css/calendar.css" %}'>
     <title>{{request.user.perfil.tipo}} DuocUC</title>
 </head>
 
@@ -29,7 +30,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark  sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/duoc.png' %}" alt="CinemaLogo" id="logo" class="logo"></a>
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/logo-duoc.svg' %}" alt="CinemaLogo" id="logo" class="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

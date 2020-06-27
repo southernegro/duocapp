@@ -3,6 +3,7 @@
 
 {% block contenido %}
 {% if request.user.is_authenticated %}
+<h2 class="text-center pt-3">Bienvenido, {{request.user.perfil.nombre}}</h2>
 <h2 class="text-center pt-3">Accede a tus módulos</h2>
 <div class="row" >
     <div class="col-lg-4">
@@ -80,7 +81,7 @@
             <h6 style="text-align: center;">
                 <strong>Mi Asistencia</strong>
             </h6>
-            <a href="#">
+            <a href="{% url 'asistencia' %}">
                 <img class="thumbnail" src="{% static 'img/asistencia.png' %}">
             </a>
         </div>
@@ -102,7 +103,7 @@
         <h6 style="text-align: center;">
             <strong>Solicitudes en Línea</strong>
         </h6>
-        <a href="#">
+        <a href="{% url 'solicitud' %}">
             <img class="thumbnail" src="{% static 'img/solicitudenlinea.png' %}">
         </a>
         </div>
@@ -113,7 +114,7 @@
             <h6 style="text-align: center;">
                 <strong>Certificados</strong>
             </h6>
-            <a href="#">
+            <a href="{% url 'certificado' %}">
                 <img class="thumbnail" src="{% static 'img/certificados.png' %}">
             </a>
         </div>
@@ -137,7 +138,7 @@
             <h6 style="text-align: center;">
                 <strong>Asistencia Alumnos</strong>
             </h6>
-            <a href="#">
+            <a href="{% url 'asistencia_doc' %}">
                 <img class="thumbnail" src="{% static 'img/asistencia.png' %}">
             </a>
         </div>
@@ -150,7 +151,7 @@
             <h6 style="text-align: center;">
                 <strong>Campus Virtual AVA</strong>
             </h6>
-            <a href="#">
+            <a target="_blank" rel="noopener noreferrer" href="https://campusvirtual.duoc.cl/webapps/login/">
                 <img class="thumbnail" src="{% static 'img/campus.png' %}">
             </a>
         </div>
@@ -172,7 +173,7 @@
             <h6 style="text-align: center;">
                 <strong>Mi Horario</strong>
             </h6>
-            <a href="#">
+            <a href="{% url 'horario' %}">
                 <img class="thumbnail" src="{% static 'img/horario.png' %}">
             </a>
         </div>
@@ -183,7 +184,7 @@
             <h6 style="text-align: center;">
                 <strong>Biblioteca</strong>
             </h6>
-            <a href="#">
+            <a href="{% url 'biblioteca' %}">
                 <img class="thumbnail" src="{% static 'img/biblioteca.png' %}">
             </a>
         </div>
@@ -194,7 +195,7 @@
             <h6 style="text-align: center;">
                 <strong>Calendario</strong>
             </h6>
-            <a href="#">
+            <a href="{% url 'calendario' %}">
                 <img class="thumbnail" src="{% static 'img/calendar.svg' %}">
             </a>
         </div>
@@ -206,7 +207,7 @@
             <h6 style="text-align: center;">
                 <strong>Correo Duoc</strong>
             </h6>
-            <a href="http://www.duoc.cl/simplesaml1/module.php/core/loginuserpass.php?AuthState=_e268140b48e3e921bebffde73d495e8272d4132f83%3Ahttp%3A%2F%2Fwww.duoc.cl%2Fsimplesaml1%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%26cookieTime%3D1592179407%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Falumnos.duoc.cl%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fmail%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1%2526osid%253D1">
+            <a target="_blank" rel="noopener noreferrer" href="http://www.duoc.cl/simplesaml1/module.php/core/loginuserpass.php?AuthState=_e268140b48e3e921bebffde73d495e8272d4132f83%3Ahttp%3A%2F%2Fwww.duoc.cl%2Fsimplesaml1%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%26cookieTime%3D1592179407%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Falumnos.duoc.cl%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fmail%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1%2526osid%253D1">
                 <img class="thumbnail" src="{% static 'img/gmail.png' %}">
             </a>
         </div>

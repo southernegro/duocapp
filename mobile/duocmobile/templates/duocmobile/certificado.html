@@ -1,0 +1,54 @@
+{% extends 'duocmobile/main.html'%}
+
+{% load static %}
+
+{% block contenido %}
+<div class="pb-5 pt-3 container shadow-lg">
+<div class="modal-body">
+  <h2><strong>Certificados</strong></h2>
+  <div class="alert alert-info" role="alert">
+  <strong>¿Necesitas realizar trámites importantes gracias a que eres alumno Duoc UC? </strong> En esta sección podrás descargar tus certificados en línea.
+</div>
+  <table class="table table-striped table-light">
+    <thead>
+      <tr>
+        <th scope="col">Certificado</th>
+        <th scope="col">Descarga</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td scope="row">Certificado Académico de Notas</td>  
+          <td scope="row"><button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i>
+          </button></td>
+        </tr>
+        <tr>
+          <td scope="row">Certificado (Módulo)</td>  
+          <td scope="row"><button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i>
+          </button></td>
+        </tr>
+        <tr>
+          <td scope="row">Certificado de Alumno Regular Asignación familiar</td>  
+          <td scope="row"><button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i>
+          </button></td>
+        </tr>
+        <tr>
+          <td scope="row">Certificado de Alumno Regular General</td>  
+          <td scope="row"><button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i>
+          </button></td>
+        </tr>
+        <tr>
+          <td scope="row">Certificado Alumno Regular Practica Profesional</td>  
+          <td scope="row"><button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i>
+          </button></td>
+        </tr>
+        <tr>
+          <td scope="row">Certificado de Alumno Regular Servicio Militar</td>  
+          <td scope="row"><button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i>
+          </button></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock %}

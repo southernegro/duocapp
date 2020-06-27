@@ -15,6 +15,7 @@
                 <th scope="col">Telefono</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Modificar</th>
                 <th scope="col">Eliminar</th>
             </tr>
         </thead>
@@ -30,6 +31,8 @@
                 <td scope="row">{{u.telefono}}</td>
                 <td scope="row">{{u.email}}</td>
                 <td scope="row">{{u.tipo}}</td>
+                <td scope="row"><a class="btn btn-large btn-info" href="{% url 'edit_user' pk=u.user.id %}">Modificar</a>
+                </td>
                 <td scope="row"><a class="btn btn-large btn-danger" data-toggle="confirmation" data-title="¿Seguro quiere eliminar esta cuenta?" href="{% url 'delete_user' pk=u.user.id %}" target="_blank">Eliminar</a>
                 </td>
             </tr>

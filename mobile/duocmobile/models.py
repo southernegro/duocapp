@@ -8,6 +8,23 @@ TIPO_USUARIO = (
 ('Admin', 'Admin'),
 )
 
+MATRICULA = (
+(' ', ' '),
+('INGENIERIA INFORMATICA', 'INGENIERIA INFORMATICA'),
+)
+CATEGORIA = (
+(' ', ' '),    
+('ACADEMICO', 'ACADEMICO'),
+('FINANCIERO', 'FINANCIERO'),
+)
+SERVICIO = (
+(' ', ' '),
+('ACTUALIZACION DATOS', 'ACTUALIZACION DATOS'),
+('CONVALIDACION ASIGNATURA', 'CONVALIDACION ASIGNATURA'),
+('NOTA PENDIENTE', 'NOTA PENDIENTE'),
+('RENUNCIA', 'RENUNCIA'),
+)
+
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     nombre = models.CharField(max_length=200, null=True)
@@ -122,3 +139,9 @@ class Admin(models.Model):
         else:
             admin = False
         return admin
+
+class Solicitud(models.Model):
+    matricula = models.CharField(default='', max_length=500, choices=MATRICULA)
+    categoria = models.CharField(default='', max_length=500, choices=CATEGORIA)
+    servicio = models.CharField(default='', max_length=500, choices=SERVICIO)
+    comentario = models.TextField(max_length=500, null=True)

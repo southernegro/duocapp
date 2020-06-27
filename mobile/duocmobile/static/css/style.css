@@ -14,6 +14,7 @@ body{
     background-color:rgb(43, 42, 42);
     font-family: 'Gayathri', sans-serif;
     text-decoration-color: white;
+    background-color: #012C56;
 }
 .logo{
     height: 40px;
@@ -59,7 +60,7 @@ body{
 /*footer*/
 .footer{
     text-align: center;
-    background-color:rgb(43, 42, 42);
+    background-color:#012C56;
     font-family: 'Gayathri', sans-serif;
 }
 

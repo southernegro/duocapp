@@ -1,0 +1,88 @@
+{% extends 'duocmobile/main.html'%}
+
+{% load static %}
+
+{% block contenido %}
+<div>
+<h2 style="padding-left: 100px;"><strong>Biblioteca</strong></h2>
+  	<div class="alert alert-success" role="alert" style="margin-left: 100px; margin-right: 100px;">
+  	<h4 class="alert-heading">#BibliotecaTeApoya</h4>
+  Los libros en préstamo estarán vigentes hasta que retomes tus clases presenciales
+</div>
+
+	<h5 style="padding-left: 100px;"><strong>Acordes a tu carrera</strong></h5>
+	<div class="row">
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{% static 'img/pythonbook.jpeg' %}">
+			<div class="box-element product">
+				<h6><strong>The Python Book</strong></h6>
+				<h6>Anónimo</h6>
+				<hr>
+				<button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Solicitar</button>
+				<a class="btn btn-outline-success" href="#">Vista Previa</a>
+				
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{% static 'img/cssandhtml.jpeg' %}">
+			<div class="box-element product">
+				<h6><strong>CSS & HTML</strong></h6>
+				<h6>Craig Grannell</h6>
+				<hr>
+				<button class="btn btn-outline-secondary add-btn update-cart">Solicitar</button>
+				<a class="btn btn-outline-success" href="#">Vista Previa</a>
+				
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{% static 'img/linux.jpeg' %}">
+			<div class="box-element product">
+				<h6><strong>How Linux Works</strong></h6>
+				<h6>Brian Ward</h6>
+				<hr>
+				<button class="btn btn-outline-secondary add-btn update-cart">Solicitar</button>
+				<a class="btn btn-outline-success" href="#">Vista Previa</a>
+				
+			</div>
+		</div>
+	</div>
+<h5 style="padding-left: 100px;"><strong>Otras categorías</strong></h5>
+	<div class="row">
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{% static 'img/hollywood.jpeg' %}">
+			<div class="box-element product">
+				<h6><strong>Hollywood</strong></h6>
+				<h6>Charles Bukowski</h6>
+				<hr>
+				<button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Solicitar</button>
+				<a class="btn btn-outline-success" href="#">Vista Previa</a>
+				
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{% static 'img/godfather.jpeg' %}">
+			<div class="box-element product">
+				<h6><strong>El Padrino</strong></h6>
+				<h6>Mario Puzo</h6>
+				<hr>
+				<button class="btn btn-outline-secondary add-btn update-cart">Solicitar</button>
+				<a class="btn btn-outline-success" href="#">Vista Previa</a>
+				
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{% static 'img/anticristo.jpeg' %}">
+			<div class="box-element product">
+				<h6><strong>El Anticristo</strong></h6>
+				<h6>Friedrich Nietzsche</h6>
+				<hr>
+				<button class="btn btn-outline-secondary add-btn update-cart">Solicitar</button>
+				<a class="btn btn-outline-success" href="#">Vista Previa</a>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

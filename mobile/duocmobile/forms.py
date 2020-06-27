@@ -30,3 +30,8 @@ class StudentForm(ModelForm):
     class Meta:
         model = Student
         fields = ['cursos']
+
+class SolicitudForm(ModelForm):
+    class Meta:
+        model = Solicitud
+        fields = ['matricula', 'categoria', 'servicio', 'comentario']

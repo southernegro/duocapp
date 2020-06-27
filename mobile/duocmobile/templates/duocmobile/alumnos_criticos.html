@@ -16,7 +16,7 @@
         <tbody>
             {% for n in alumnos %}
             <tr>
-                <td scope="row">{{n.alumno.user.nombre}} {{n.alumno.user.apellido}}</td>
+                <td scope="row">{{n.user.nombre}} {{n.alumno.user.apellido}}</td>
                 <td scope="row">{{n.curso.asignatura.nombre}} {{n.curso.seccion}}</td>
                 <td scope="row">{{n.notas.prom|floatformat:1}}</td>
             </tr>

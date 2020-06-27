@@ -24,6 +24,14 @@ urlpatterns = [
 	path('alumnoscriticos/', views.alumnos_criticos, name="alumnos_criticos"),
 	path('listanonotas/', views.misNotas, name="listado_notas"),
 	path('admin/users/delete/<pk>/',views.deleteUser, name='delete_user'),
+	path('asistencia/', views.asistencia, name="asistencia"),
+	path('solicitud/', views.solicitud, name="solicitud"),
+	path('certificado/', views.certificado, name="certificado"),
+	path('horario/', views.horario, name="horario"),
+	path('calendario/', views.calendario, name="calendario"),
+	path('biblioteca/', views.biblioteca, name="biblioteca"),
+	path('asistencia_doc/', views.asistencia_doc, name="asistencia_doc"),
+	path('edit_user/<pk>/', views.edit_user, name="edit_user"),
 
 ]
 
