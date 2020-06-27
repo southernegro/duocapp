@@ -3,7 +3,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
-from .forms import CustomUserForm, materialApoyoForm, ProfileForm, DocenteForm, StudentForm
+from .forms import CustomUserForm, materialApoyoForm, ProfileForm, DocenteForm, StudentForm, SolicitudForm
 
 
 # Create your views here.
@@ -172,3 +172,72 @@ def deleteUser(request, pk):
     user.delete()
     perfil.delete()
     return redirect(to='listado_usuarios')
+
+@login_required
+def asistencia(request):
+    student = request.user.perfil.student
+    cursos = Curso.objects.filter(student = student.id)
+    data={
+        'cursos': cursos
+        }
+    return render(request, 'duocmobile/asistencia.html', data)
+
+@login_required
+def solicitud(request):
+    usuario = request.user.perfil
+    data={
+        'usuario':usuario, 'form': SolicitudForm()
+    }
+    if request.method=='POST':
+        formulario = SolicitudForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+        data['form'] = formulario
+    return render(request, 'duocmobile/solicitud.html', data)
+
+def certificado(request):
+    return render(request, 'duocmobile/certificado.html', {})
+
+def horario(request):
+    return render(request, 'duocmobile/horario.html', {})
+
+@login_required
+def horario(request):
+    return render(request, 'duocmobile/horario.html', {})
+
+@login_required
+def calendario(request):
+    return render(request, 'duocmobile/calendario.html', {})
+
+@login_required
+def biblioteca(request):
+    return render(request, 'duocmobile/biblioteca.html', {})
+
+@login_required
+def asistencia_doc(request):
+    docente = request.user.perfil.docente
+    alumnos = Student.objects.all()
+    cursos = Curso.objects.filter(docente = docente.id)
+    data={
+        'alumnos': alumnos, 'cursos':cursos
+        }
+    return render(request, 'duocmobile/asistencia_doc.html', data)
+
+def edit_user(request, pk):
+    usuario = User.objects.get(pk=pk)
+    perfil = Perfil.objects.get(user_id=pk)
+    data = {
+        'form': CustomUserForm(instance=usuario),
+        'profile': ProfileForm(instance=perfil)
+    }
+    if request.method == 'POST':
+        formulario = CustomUserForm(data=request.POST, instance=usuario)
+        profile = ProfileForm(data=request.POST, instance=perfil)
+        if formulario.is_valid():
+            formulario.save()
+            profile.save()
+            data['mensaje']='Usuario modificado correctamente'
+            return redirect(to='listado_usuarios')
+        data['form']=CustomUserForm(instance=User.objects.get(pk=pk))
+        data['profile']=ProfileForm(instance=perfil)
+    return render(request,'registration/edit_user.html', data)

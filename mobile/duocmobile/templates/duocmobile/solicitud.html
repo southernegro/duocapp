@@ -1,0 +1,46 @@
+{% extends 'duocmobile/main.html'%}
+
+{% load static %}
+
+{% block contenido %}
+<div class="pb-5 pt-3 container shadow-lg" style="padding-left: 25%">
+    <h2>Nueva Solicitud en Línea</h2>
+    <form class="container py-3" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <b>Carrera <b style="color:red;">*</b></b>
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.matricula}}
+        </div>
+        <b>Categoría <b style="color:red;">*</b></b>
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.categoria}}
+        </div>
+        <b>Servicio <b style="color:red;">*</b></b>
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.servicio}}
+        </div>
+        <b>Comentario</b>
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.comentario}}
+        </div>
+        <div class="py-4" style="position: center;">
+            <input class="btn btn-success" type="submit" value="Enviar">
+        </div> 
+        
+    </form>
+
+    {{ mensaje }}
+</div>
+{% endblock %}
