@@ -13,6 +13,7 @@ admin.site.register(Notas)
 admin.site.register(AlumnosCriticos)
 admin.site.register(materialApoyo)
 admin.site.register(Admin)
+admin.site.register(Solicitud)
 
 class CursosAlumno(admin.ModelAdmin):
     fields = ['cursos', 'student']
