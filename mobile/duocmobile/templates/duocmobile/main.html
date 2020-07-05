@@ -45,7 +45,7 @@
                         <a class="nav-link" href="{% url 'perfil' %}">{{request.user.perfil.tipo}}: {{ user.perfil.nombre }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
+                        <a class="nav-link" href="{% url 'logout' %}" style="color: red;">Cerrar Sesion</a>
                     </li>
                     {% else %}
                     <li class="nav-item">

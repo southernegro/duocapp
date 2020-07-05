@@ -1,0 +1,40 @@
+{% extends 'duocmobile/main.html'%}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="pb-5 pt-3 container shadow-lg">
+
+<div class="modal-body">
+  <h2><strong>Recargar TNE</strong></h2>
+
+<div style="padding-left: 300px;" class="d-flex flex-row">
+    <img style="height: 200px; width: 200px;" class="card-img-top" src="{% static 'img/tne-img.png' %}" alt="Card image cap">
+    <div class="card-body" style="padding-top: 50px;">
+        <p>
+          <strong>N° Tarjeta:</strong> 74925364
+        </p>
+        <p>
+          <strong>Saldo:</strong> $1250
+        </p>
+        <p>
+          <strong>Expira:</strong> 05/08/2020
+        </p>
+    </div>
+</div>
+
+  <form style="margin-top: 25px;">
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Monto</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="inputEmail3" placeholder="$ ...">
+    </div>
+    <div class="col-sm-10 offset-sm-2" style="margin-top: 20px;">
+      <a type="submit"><img style="height: 200px; width: 500px;" src="{% static 'img/webpay.png' %}"></a>
+    </div>
+  </div>
+</form>
+</div>
+</div>
+{% endblock %}

@@ -32,6 +32,10 @@ urlpatterns = [
 	path('biblioteca/', views.biblioteca, name="biblioteca"),
 	path('asistencia_doc/', views.asistencia_doc, name="asistencia_doc"),
 	path('edit_user/<pk>/', views.edit_user, name="edit_user"),
+	path('config/', views.config, name="config"),
+	path('tne/', views.tne, name="tne"),
+	path('registro_secciones/', views.registro_secciones, name="registro_secciones"),
+	path('contenido/', views.contenido, name="contenido"),
 
 ]
 

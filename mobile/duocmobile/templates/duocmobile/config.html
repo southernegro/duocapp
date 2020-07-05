@@ -1,0 +1,36 @@
+{% extends 'duocmobile/main.html'%}
+
+{% load static %}
+
+{% block contenido %}
+<div class="pb-5 pt-3 container shadow-lg">
+<div class="modal-body">
+  <h2><strong>Configuración de la Aplicación</strong></h2>
+  <table class="table table-striped table-light">
+    <tbody>
+        <tr>
+          <td scope="row">Modo Oscuro</td>  
+          <td scope="row">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1">
+              <label class="custom-control-label" for="customSwitch1"></label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row">Fuente</td>  
+          <td scope="row">
+            <div class="form-group">
+            <select id="disabledSelect" class="form-control">
+              <option>Arial</option>
+              <option>Calibri</option>
+            </select>
+          </div>
+        </td>
+        </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-success">Guardar cambios</button>
+</div>
+</div>
+{% endblock %}
