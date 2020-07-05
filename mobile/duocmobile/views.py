@@ -3,7 +3,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
-from .forms import CustomUserForm, materialApoyoForm, ProfileForm, DocenteForm, StudentForm, SolicitudForm
+from .forms import CustomUserForm, materialApoyoForm, ProfileForm, DocenteForm, StudentForm, SolicitudForm, CursoForm
 
 
 # Create your views here.
@@ -23,8 +23,8 @@ def perfil(request):
 def listado_asignaturas(request):
     student = request.user.perfil.student
     cursos = Curso.objects.filter(student = student.id)
-    for i in cursos:
-        material = materialApoyo.objects.filter(curso=i)
+    #for i in cursos:
+    material = materialApoyo.objects.all()
     criticos = AlumnosCriticos.objects.filter(alumno = student.id)
     data={
         'cursos': cursos, 'criticos':criticos, 'material':material
@@ -241,3 +241,27 @@ def edit_user(request, pk):
         data['form']=CustomUserForm(instance=User.objects.get(pk=pk))
         data['profile']=ProfileForm(instance=perfil)
     return render(request,'registration/edit_user.html', data)
+
+@login_required
+def config(request):
+    return render(request, 'duocmobile/config.html', {})
+
+@login_required
+def tne(request):
+    return render(request, 'duocmobile/tne.html', {})
+
+def registro_secciones(request):
+    data = {
+       'form': CursoForm()
+    }
+    if request.method=='POST':
+        form = CustomUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='registro_secciones')
+        data['form']=form
+    return render(request, 'registration/registro_secciones.html', data)   
+
+@login_required
+def contenido(request):
+    return render(request, 'duocmobile/contenido.html', {})
