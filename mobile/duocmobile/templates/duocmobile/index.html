@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block contenido %}
+{% if request.user.is_authenticated %}
 <div class="bd-example">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -27,7 +28,7 @@
   </div>
 </div>
 
-{% if request.user.is_authenticated %}
+
 <h2 class="text-center pt-3">Bienvenido, {{request.user.perfil.nombre}}</h2>
 <h2 class="text-center pt-3">Accede a tus módulos</h2>
 <div class="row" >
